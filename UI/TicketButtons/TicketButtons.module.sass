@@ -1,0 +1,32 @@
+@use '@constants' as *
+
+.buttons
+  display: flex
+  justify-content: space-between
+  align-items: center
+
+  width: 68px
+  height: 20px
+
+.button
+  display: flex
+  justify-content: center
+  align-items: center
+
+  width: 20px
+  height: 20px
+  border-radius: 4px
+  border: none
+
+  background-color: $orange
+
+  &:hover:not(:disabled)
+    cursor: pointer
+    & > img
+      filter: invert(7%) sepia(16%) saturate(806%) hue-rotate(169deg) brightness(90%) contrast(88%)
+
+  &:disabled
+    background-color: $disabled
+
+.icon
+  filter: invert(90%) sepia(41%) saturate(0%) hue-rotate(39deg) brightness(113%) contrast(101%)

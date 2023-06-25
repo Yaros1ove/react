@@ -1,0 +1,24 @@
+@use '@constants' as *
+  
+.film
+  display: flex
+
+  padding: $padding_xl
+  margin-bottom: $padding_xl
+
+  background-color: $white
+  border-radius: $radius
+
+  & > *:not(:last-child)
+    margin-right: $padding_xxl
+
+.poster
+  border-radius: $radius
+
+  width: 400px
+  height: 500px
+
+.loading
+  display: flex
+  justify-content: center
+  align-items: center

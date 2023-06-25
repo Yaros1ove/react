@@ -1,0 +1,23 @@
+@use '@constants' as *
+
+.input
+  padding: $padding_s $padding_l
+  width: 100%
+
+  background-color: $white
+
+  border: 1px solid $border
+  border-radius: $radius
+
+  &::placeholder
+    color: $placeholder
+  &:hover
+    outline: 1px solid $hover
+  &:focus
+    outline: 1px solid $orange
+
+.header
+  font-size: 14px
+  line-height: 20px
+
+  margin-bottom: 4px

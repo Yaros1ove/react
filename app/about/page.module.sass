@@ -1,0 +1,20 @@
+@use '@constants' as *
+  
+.info
+  width: 100%
+  background-color: $white
+  border-radius: $radius
+  padding: $padding_xl
+
+  & > *:not(:last-child)
+    margin-bottom: $padding_l
+
+  & > p
+  font-size: 16px
+  font-weight: 400
+  line-height: 24px
+
+.header
+  font-size: 32px
+  font-weight: 600
+  line-height: 32px

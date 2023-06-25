@@ -1,0 +1,21 @@
+@use './constants.sass' as *
+
+*
+  padding: 0
+  margin: 0
+  box-sizing: border-box
+  color: $font
+
+main
+  min-height: calc(100vh - $header_height - $footer_height)
+
+  background-color: $background
+
+  padding: $padding_xl
+
+.link
+  color: $white
+  text-decoration: none
+
+  &:hover
+    text-decoration: underline

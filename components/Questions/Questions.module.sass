@@ -1,0 +1,22 @@
+@use '@constants' as *
+  
+.questions
+  display: flex
+  flex-direction: column
+
+  & > *:not(:last-child)
+    margin-bottom: $padding_l
+
+.header
+  width: 100%
+  background-color: $white
+
+  border-radius: $radius
+
+  padding: $padding_xl
+  margin-bottom: $padding_xl
+
+  & > h1
+    font-size: 32px
+    font-weight: 600
+    line-height: 32px

@@ -1,0 +1,40 @@
+@use '@constants' as *
+
+.review
+  width: 100%
+  display: flex
+
+  background-color: $white
+  border-radius: $radius
+
+  padding: $padding_xl
+
+.avatar
+  margin-right: $padding_xxl
+
+.details
+  width: 100%
+
+  & > p
+    font-size: 16px
+    font-weight: 400
+    line-height: 24px
+
+  & > *:first-child
+    display: flex
+    justify-content: space-between
+
+    & > h3
+      font-size: 20px
+      font-weight: 600
+      line-height: 32px
+
+.rating
+  font-size: 20px
+  font-weight: 400
+  line-height: 32px
+
+.ratingNumber
+  font-size: 20px
+  font-weight: 600
+  line-height: 32px

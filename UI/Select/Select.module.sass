@@ -1,0 +1,41 @@
+@use '@constants' as *
+
+.wrapper
+  position: relative
+
+.select
+  width: 100%
+  text-align: left
+  padding: $padding_s $padding_l
+
+  background-color: $white
+  color: $placeholder
+  border: 1px solid $border
+  border-radius: $radius
+
+  &:hover
+    outline: 1px solid $hover
+    cursor: pointer
+  &:focus
+    outline: 1px solid $orange
+
+.selected
+  color: $font
+
+.arrow
+  position: absolute
+  top: 50%
+  right: $padding_l
+  transform: translateY(-50%)
+  pointer-events: none
+  transition: transform 0.2s
+
+.flip
+  top: 25%
+  transform: scaleY(-1)
+
+.header
+  font-size: 14px
+  line-height: 20px
+
+  margin-bottom: 4px

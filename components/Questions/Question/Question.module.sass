@@ -1,0 +1,35 @@
+@use '@constants' as *
+
+.wrapper
+  display: flex
+  justify-content: space-between
+
+.question
+  width: 100%
+
+  background-color: $white
+  border-radius: $radius
+  padding: $padding_xl
+  &:hover
+    cursor: pointer
+
+    .title
+      color: $orange
+
+.answer
+  padding-right: calc($padding_xl + 28px)
+  padding-top: $padding_l
+  font-weight: 400
+  font-size: 16px
+  line-height: 24px
+
+.arrow
+  transition: transform 0.2s
+
+.flip
+  transform: scaleY(-1)
+
+.title
+  font-size: 24px
+  font-weight: 600
+  line-height: 32px

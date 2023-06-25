@@ -1,0 +1,23 @@
+@use '@constants' as *
+
+.button
+  padding: $padding_xs $padding_l
+  border-radius: $radius
+
+  font-size: 14px
+  font-weight: 500
+  line-height: 20px
+
+  &:hover
+    cursor: pointer
+    transform: scale(1.1)
+
+.yes
+  background-color: $orange
+  color: $white
+  border: none
+
+.no
+  background-color: $white
+  color: $orange
+  border: 1px solid $orange
