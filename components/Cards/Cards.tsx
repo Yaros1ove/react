@@ -24,10 +24,10 @@ function Cards({ isBasket = false }: Props) {
   const nameFilter = useSelector(state => selectNameFilter(state as StateType))
   const cinemaFilter = useSelector(state => selectCinemaFilter(state as StateType))
 
-  let { data, isLoading, error } = useGetMoviesQuery(cinemaFilter)
+  let { data, isLoading, isFetching, error } = useGetMoviesQuery(cinemaFilter)
 
 
-  if (isLoading) {
+  if (isLoading || isFetching) {
     return <h2 className={styles.loading}>Загрузка...</h2>
   }
 
