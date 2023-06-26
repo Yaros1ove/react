@@ -1,7 +1,6 @@
-import { useGetMovieQuery } from "@/Utils/Redux/services/movieApi"
 import Film from "@/components/Film/Film"
 import Reviews from "@/components/Film/Reviews/Reviews"
-import { Metadata, ResolvingMetadata } from "next"
+import { Metadata } from "next"
 
 type Props = {
   params: {
@@ -9,9 +8,9 @@ type Props = {
   }
 }
 
-// export async function generateMetadata({ params: { id } }: Props, parent: ResolvingMetadata): Promise<Metadata> {
-//   const { data, isLoading, error } = useGetMovieQuery(id)
-// }
+export const metadata: Metadata = {
+  title: 'Фильм',
+}
 
 function FilmPage({ params: { id } }: Props) {
 
