@@ -2,26 +2,25 @@
 
 import { createPortal } from 'react-dom'
 import styles from './PopUp.module.sass'
-import { ReactNode, RefObject, useEffect } from 'react'
+import { ReactNode, useEffect } from 'react'
+import { useSelectContext } from '../Select'
 
 type Props = {
   children: ReactNode,
-  setCurrentOpen: (name: string) => void,
-  refLink: RefObject<HTMLButtonElement>,
-  name: string,
 }
 
-function PopUp({ children, refLink, name, setCurrentOpen }: Props) {
-  const coords = refLink.current?.getBoundingClientRect() as DOMRect
+function PopUp({ children }: Props) {
+  const { rootRef, name, setCurrentOpen } = useSelectContext()
+  const coords = rootRef.current?.getBoundingClientRect() as DOMRect
   useEffect(() => {
     const handleClick = (e: MouseEvent): any => {
-      if (e.target instanceof Node && !refLink.current?.contains(e.target)) {
+      if (e.target instanceof Node && !rootRef.current?.contains(e.target)) {
         setCurrentOpen('')
       }
     }
     const handleScroll = (): any => {
       setCurrentOpen('')
-      refLink.current?.blur()
+      rootRef.current?.blur()
     }
     window.addEventListener('scroll', handleScroll)
     window.addEventListener('click', handleClick)
@@ -29,11 +28,17 @@ function PopUp({ children, refLink, name, setCurrentOpen }: Props) {
       window.removeEventListener('scroll', handleScroll)
       window.removeEventListener('click', handleClick)
     }
-  }, [name])
+  }, [name, rootRef, setCurrentOpen])
   return createPortal(
-    <div className={styles.popup} style={{ top: `${coords.top + coords.height + 4}px`, left: `${coords.left}px`, width: `${coords.width}px` }}>
+    <div
+      className={styles.popup}
+      style={{
+        top: `${coords.top + coords.height + 4}px`,
+        left: `${coords.left}px`,
+        width: `${coords.width}px`
+      }}>
       {children}
-    </div>, refLink.current as HTMLButtonElement
+    </div>, rootRef.current as HTMLButtonElement
   )
 }
 

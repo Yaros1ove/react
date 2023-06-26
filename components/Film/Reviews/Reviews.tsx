@@ -17,7 +17,9 @@ function Reviews({ id }: Props) {
 
   return (
     <div className={styles.reviews}>
-      {data?.map(review => <Review review={review} key={review.id} />)}
+      {data?.map(review =>
+        <Review review={review} key={review.id} />
+      )}
     </div>
   )
 }

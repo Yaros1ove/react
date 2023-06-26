@@ -23,7 +23,7 @@ function RootLayout({
   return (
     <html lang="en">
       <body className={roboto.className}>
-        <div id='modal'></div>
+        <div className='modal' id='modal'></div>
         <Provider>
           <Header />
           <main>

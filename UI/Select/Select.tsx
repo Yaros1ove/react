@@ -4,9 +4,10 @@ import styles from './Select.module.sass'
 import Options from './Options/Options'
 import Image from 'next/image'
 import PopUp from './PopUp/PopUp'
-import { useRef, useState } from 'react'
+import { Dispatch, RefObject, SetStateAction, createContext, useContext, useRef, useState } from 'react'
 import classNames from 'classnames'
 import { OptionsType } from '@/app/types'
+import { useDispatch } from 'react-redux'
 
 type Props = {
   name: string,
@@ -16,33 +17,64 @@ type Props = {
   action: (value: string) => { payload: string; type: string },
 }
 
+type SelectContextType = {
+  rootRef: RefObject<HTMLElement>,
+  selected: string | undefined,
+  setSelected: Dispatch<SetStateAction<string | undefined>>,
+  action?: (args: any) => any,
+  name: string,
+  setCurrentOpen: (args: any) => void,
+}
+
+const SelectContext = createContext<SelectContextType>({
+  rootRef: { current: null },
+  selected: '',
+  setSelected: () => useDispatch,
+  setCurrentOpen: () => { },
+  name: '',
+})
+export const useSelectContext = () => useContext(SelectContext)
+
 function Select({ name, currentOpen, setCurrentOpen, options, action }: Props) {
   const [selected, setSelected] = useState<undefined | string>()
   const isOpen = currentOpen === name
 
-  const ref = useRef<HTMLButtonElement>(null)
+  const rootRef = useRef<HTMLButtonElement>(null)
 
   return (
-    <div>
-      {isOpen && <PopUp refLink={ref} name={name} setCurrentOpen={setCurrentOpen}><Options action={action} refLink={ref} setCurrentOpen={setCurrentOpen} setSelected={setSelected} options={options} /></PopUp>}
-      <p className={styles.header}>{name}</p>
-      <div className={styles.wrapper}>
-        <button
-          ref={ref}
-          onClick={() => setCurrentOpen(name)}
-          className={classNames([styles.select, selected && styles.selected])}
-        >
-          {selected || `Выберите ${name.toLowerCase()}`}
-        </button>
-        <Image
-          alt='arrow'
-          src='selectArrow.svg'
-          width={19}
-          height={19}
-          className={classNames([styles.arrow, isOpen && styles.flip])}
-        />
+    <SelectContext.Provider value={{
+      rootRef,
+      selected,
+      setSelected,
+      action,
+      name,
+      setCurrentOpen,
+    }}>
+      <div>
+        {isOpen
+          &&
+          <PopUp>
+            <Options options={options} />
+          </PopUp>}
+        <p className={styles.header}>{name}</p>
+        <div className={styles.wrapper}>
+          <button
+            ref={rootRef}
+            onClick={() => setCurrentOpen(name)}
+            className={classNames([styles.select, selected && styles.selected])}
+          >
+            {selected || `Выберите ${name.toLowerCase()}`}
+          </button>
+          <Image
+            alt='arrow'
+            src='selectArrow.svg'
+            width={19}
+            height={19}
+            className={classNames([styles.arrow, isOpen && styles.flip])}
+          />
+        </div>
       </div>
-    </div>
+    </SelectContext.Provider>
   )
 }
 

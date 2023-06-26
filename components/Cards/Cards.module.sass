@@ -3,8 +3,7 @@
 .cards
   width: 100%
 
-  & > *:not(:last-child)
-    margin-bottom: $padding_l
+  @include spacing(margin-bottom, $padding_l)
 
 .loading
   display: flex

@@ -39,7 +39,14 @@ function Questions() {
         <h1>Вопросы-ответы</h1>
       </div>
       <div className={styles.questions}>
-        {questions.map(question => <Question key={question.question} question={question.question} answer={question.answer} currentChosen={currentChosen} setCurrentChosen={set} />)}
+        {questions.map(question =>
+          <Question
+            key={question.question}
+            question={question.question}
+            answer={question.answer}
+            currentChosen={currentChosen}
+            setCurrentChosen={set} />
+        )}
       </div>
     </>
   )

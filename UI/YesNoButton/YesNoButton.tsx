@@ -9,7 +9,16 @@ type Props = {
 
 function YesNoButton({ onClick, children, isYes = false }: Props) {
   return (
-    <button onClick={onClick} className={classNames([styles.button, isYes ? styles.yes : styles.no])}>{children}</button>
+    <button
+      onClick={onClick}
+      className={classNames([styles.button, isYes
+        ?
+        styles.yes
+        :
+        styles.no
+      ])}>
+      {children}
+    </button>
   )
 }
 

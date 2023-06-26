@@ -3,7 +3,7 @@
 import Input from '@/UI/Input/Input'
 import styles from './Search.module.sass'
 import Select from '@/UI/Select/Select'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { OptionsType, genres } from '@/app/types'
 import { filterActions } from '@/Utils/Redux/features/filter'
@@ -23,7 +23,10 @@ function Search() {
     return <p>Error</p>
   }
 
-  const cinemas: OptionsType = [{ name: 'Убрать', value: '' }].concat(data.map(cinema => { return { name: cinema.name, value: cinema.id } }))
+  const cinemas: OptionsType = [{ name: 'Убрать', value: '' }]
+    .concat(data.map(cinema => {
+      return { name: cinema.name, value: cinema.id }
+    }))
 
 
 
@@ -39,8 +42,20 @@ function Search() {
     <div className={styles.search}>
       <h3 className={styles.header}>Фильтр поиска</h3>
       <Input name='Название' placeholder='Введите название' />
-      <Select action={(value: string) => dispatch(filterActions.setGenre(value))} currentOpen={currentOpen} setCurrentOpen={handleClick} name='Жанр' options={genres} />
-      <Select action={(value: string) => dispatch(filterActions.setCinema(value))} currentOpen={currentOpen} setCurrentOpen={handleClick} name='Кинотеатр' options={cinemas} />
+      <Select
+        action={(value: string) => dispatch(filterActions.setGenre(value))}
+        currentOpen={currentOpen}
+        setCurrentOpen={handleClick}
+        name='Жанр'
+        options={genres}
+      />
+      <Select
+        action={(value: string) => dispatch(filterActions.setCinema(value))}
+        currentOpen={currentOpen}
+        setCurrentOpen={handleClick}
+        name='Кинотеатр'
+        options={cinemas}
+      />
     </div>
   )
 }

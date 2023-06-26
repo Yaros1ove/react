@@ -18,10 +18,8 @@
 
   border-radius: $radius
 
-  font-size: 14px
-  font-weight: 600
-  line-height: 20px
+  @include fontSmall
 
 .icon:hover
-    cursor: pointer
-    filter: invert(49%) sepia(95%) saturate(4456%) hue-rotate(2deg) brightness(102%) contrast(109%)
+  cursor: pointer
+  @include whiteToOrange

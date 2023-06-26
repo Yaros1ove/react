@@ -1,17 +1,18 @@
+'use client'
+
 import classNames from 'classnames'
 import styles from './Options.module.sass'
-import { Dispatch, RefObject, SetStateAction } from 'react'
 import { OptionsType } from '@/app/types'
+import { useSelectContext } from '../Select'
+
 
 type Props = {
   options: OptionsType,
-  setSelected: Dispatch<SetStateAction<string | undefined>>,
-  setCurrentOpen: (name: string) => void,
-  refLink: RefObject<HTMLButtonElement>,
-  action?: (value: string) => { payload: string; type: string },
 }
 
-function Options({ options, setSelected, setCurrentOpen, refLink, action }: Props) {
+function Options({ options }: Props) {
+  const { setSelected, setCurrentOpen, rootRef, action } = useSelectContext()
+
   const handleClick = (option: typeof options[number]) => {
     if (!option.value) {
       setSelected('')
@@ -19,7 +20,7 @@ function Options({ options, setSelected, setCurrentOpen, refLink, action }: Prop
       setSelected(option.name)
     }
     setCurrentOpen('')
-    refLink.current?.blur()
+    rootRef.current?.blur()
     if (action) {
       action(option.value)
     }
@@ -27,7 +28,16 @@ function Options({ options, setSelected, setCurrentOpen, refLink, action }: Prop
 
   return (
     <ul className={classNames([styles.options, styles.hidden])}>
-      {options.map(option => <li onClick={() => handleClick(option)} className={styles.option} data-value={option.value} key={option.value}>{option.name}</li>)}
+      {options.map(option =>
+        <li
+          onClick={() => handleClick(option)}
+          className={styles.option}
+          data-value={option.value}
+          key={option.value}
+        >
+          {option.name}
+        </li>)
+      }
     </ul>
   )
 }

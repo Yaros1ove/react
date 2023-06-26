@@ -9,7 +9,7 @@ type Props = {
   question: string,
   answer: string,
   currentChosen: string,
-  setCurrentChosen: (question: string) => void
+  setCurrentChosen: (question: string) => void,
 }
 
 
