@@ -2,7 +2,7 @@
 
 import { createPortal } from 'react-dom'
 import styles from './Modal.module.sass'
-import { Dispatch, MouseEvent, ReactNode, SetStateAction } from 'react'
+import { Dispatch, MouseEvent, ReactNode, SetStateAction, createContext, useContext } from 'react'
 import classNames from 'classnames'
 
 type Props = {
@@ -10,20 +10,35 @@ type Props = {
   isOpen: boolean,
   setIsOpen: Dispatch<SetStateAction<boolean>>,
 }
+type ModalContextType = {
+  isOpen: boolean,
+  setIsOpen: Dispatch<SetStateAction<boolean>>,
+}
+const ModalContext = createContext<ModalContextType>({
+  isOpen: false,
+  setIsOpen: () => { },
+})
+export const useModalContext = () => useContext(ModalContext)
+
 
 function Modal({ children, isOpen, setIsOpen }: Props) {
 
+
+
   return createPortal(
-    <div
-      onClick={() => { setIsOpen(false) }}
-      className={classNames([styles.back, isOpen && styles.open])}>
+    <ModalContext.Provider value={{ isOpen, setIsOpen }}>
       <div
-        className={styles.modal}
-        onClick={(e: MouseEvent<HTMLDivElement>) => e.stopPropagation()}
+        onClick={() => { setIsOpen(false) }}
+        className={classNames([styles.back, isOpen && styles.open])}
       >
-        {children}
+        <div
+          className={styles.modal}
+          onClick={(e: MouseEvent<HTMLDivElement>) => e.stopPropagation()}
+        >
+          {children}
+        </div>
       </div>
-    </div>,
+    </ModalContext.Provider>,
     document.getElementById('modal') as HTMLDivElement
   )
 }

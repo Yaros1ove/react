@@ -1,3 +1,5 @@
+'use client'
+
 import styles from './Card.module.sass'
 import Poster from '@/components/Cards/Card/Poster/Poster'
 import CardDescription from './CardDescription/CardDescription'
@@ -17,17 +19,29 @@ type Props = {
 function Card({ film, isBasket = false }: Props) {
   const [isOpen, setIsOpen] = useState(false)
 
-
   return (
     <div className={styles.card}>
-      {isOpen && <Modal isOpen setIsOpen={setIsOpen}><RemoveTicketsModal id={film.id} setIsOpen={setIsOpen} /></Modal>}
+      {isOpen
+        &&
+        <Modal isOpen setIsOpen={setIsOpen}>
+          <RemoveTicketsModal id={film.id} />
+        </Modal>}
       <div className={styles.info}>
         <Poster url={film.posterUrl} id={film.id} title={film.title} />
         <CardDescription title={film.title} genre={translateGenre(film.genre)} id={film.id} />
       </div>
       <div className={styles.buttons}>
         <TicketButtons setIsOpen={setIsOpen} id={film.id} />
-        {isBasket && <Image onClick={() => setIsOpen(true)} className={styles.cross} alt='close' src='close.svg' width={20} height={20} />}
+        {isBasket
+          &&
+          <Image
+            onClick={() => setIsOpen(true)}
+            className={styles.cross}
+            alt='close'
+            src='close.svg'
+            width={20}
+            height={20}
+          />}
       </div>
     </div>
   )

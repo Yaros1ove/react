@@ -1,18 +1,19 @@
+'use client'
+
 import Image from 'next/image'
 import styles from './RemoveTicketsModal.module.sass'
-import { Dispatch, SetStateAction } from 'react'
+import { useModalContext } from '../Modal'
 import { useDispatch } from 'react-redux'
 import YesNoButton from '@/UI/YesNoButton/YesNoButton'
 import { cartActions } from '@/Utils/Redux/features/cart'
 
 type Props = {
-  setIsOpen: Dispatch<SetStateAction<boolean>>,
   id: string,
-  // dispatch: () => void
 }
 
-function RemoveTicketsModal({ setIsOpen, id }: Props) {
+function RemoveTicketsModal({ id }: Props) {
   const dispatch = useDispatch()
+  const { setIsOpen } = useModalContext()
 
   return (
     <div>

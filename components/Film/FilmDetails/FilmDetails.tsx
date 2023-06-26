@@ -15,8 +15,14 @@ function FilmDetails({ film }: Props) {
 
   return (
     <div>
-      {isOpen && <Modal isOpen setIsOpen={setIsOpen}><RemoveTicketsModal id={film.id} setIsOpen={setIsOpen} /></Modal>}
-      <div className={styles.header}><h1 className={styles.title}>{film.title}</h1><TicketButtons setIsOpen={setIsOpen} id={film.id} /></div>
+      {isOpen
+        &&
+        <Modal isOpen setIsOpen={setIsOpen}>
+          <RemoveTicketsModal id={film.id} /></Modal>}
+      <div className={styles.header}>
+        <h1 className={styles.title}>{film.title}</h1>
+        <TicketButtons setIsOpen={setIsOpen} id={film.id} />
+      </div>
       <div className={styles.properties}>
         <p><span>Жанр:</span> {translateGenre(film.genre)}</p>
         <p><span>Год выпуска:</span> {film.releaseYear}</p>

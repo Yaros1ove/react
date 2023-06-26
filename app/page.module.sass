@@ -1,7 +1,6 @@
 @use './constants.sass' as *
-  
+
 .main
   display: flex
 
-  & > *:not(:last-child)
-    margin-right: $padding_xl
+  @include spacing(margin-right, $padding_l)

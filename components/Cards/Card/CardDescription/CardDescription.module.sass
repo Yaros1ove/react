@@ -3,9 +3,7 @@
 .cardDescription
 
   & > p
-    font-size: 16px
-    font-style: italic
-    line-height: 20px
+    @include fontItalic
 
 .title
 
@@ -14,9 +12,7 @@
 
   margin-bottom: $radius
 
-  font-size: 20px
-  font-weight: 600
-  line-height: 20px
+  @include fontTitle
 
   &:hover
     color: $orange

@@ -26,7 +26,6 @@ function Cards({ isBasket = false }: Props) {
 
   let { data, isLoading, isFetching, error } = useGetMoviesQuery(cinemaFilter)
 
-
   if (isLoading || isFetching) {
     return <h2 className={styles.loading}>Загрузка...</h2>
   }
@@ -45,6 +44,7 @@ function Cards({ isBasket = false }: Props) {
     if (nameFilter) {
       data = data.filter(film => film.title.toLowerCase().includes(nameFilter.toLowerCase()))
     }
+
   }
 
   return (

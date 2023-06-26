@@ -10,9 +10,8 @@
   justify-content: flex-start
   margin-top: $padding_xxl
 
-  & > *:first-child
-    margin-right: $padding_xs
+  @include spacing(margin-right, $padding_xs)
 
 .close:hover
   cursor: pointer
-  filter: invert(49%) sepia(95%) saturate(4456%) hue-rotate(2deg) brightness(102%) contrast(109%)
+  @include whiteToOrange
